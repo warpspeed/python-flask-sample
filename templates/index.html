@@ -1,0 +1,106 @@
+<html>
+<head>
+    <title>Task List</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+
+    <style>
+
+    html, body {
+        font-family: sans-serif;
+    }
+
+    h1 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+
+    ul {
+        margin-top: 20px;
+        padding-left: 0px;
+        list-style: none;
+    }
+
+    li {
+        font-size: 1.25em;
+        padding: 20px 0;
+        border-top: 1px solid #eee;
+    }
+
+    .form-complete{
+        display: inline;
+        margin-right: 20px;
+    }
+
+    .container {
+        width: 680px;
+    }
+
+    </style>
+</head>
+<body>
+    <div style="min-height: 90%" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Task List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <form action="/" method="post">
+                    <div class="input-group">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <input type="text" name="name" class="form-control" placeholder="What's next on the list?"/>
+                        <span class="input-group-btn">
+                            <input type="submit" value="Add Task" class="btn"/>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <div class="center-block">
+                    <form action="/clear-complete/" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <input type="submit" class="btn btn-danger btn-block" value="Clear Completed">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" >
+                {% if tasks %}
+                <ul>
+                    {% for task in tasks %}
+                    <li>
+                        <form class="form-complete" action="/{{task.id}}/toggle-complete/" method="post">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            {% if task.is_complete %}
+                            <button class="btn btn-success">
+                                <span class="glyphicon glyphicon-ok-circle"></span>
+                                {% else %}
+                                <button class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-play-circle"></span>
+                                    {% endif %}
+                                </button>
+                            </form>
+                            {% if task.is_complete %}
+                            <span><s>{{ task.name }}</s></span>
+                            {% else %}
+                            <span>{{ task.name }}</span>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p class="text-muted">Deployed with <a href="https://warpspeed.io">WarpSpeed.io</a> by <a href="https://turnerlogic.com">Turner Logic</a></p>
+        </div>
+    </footer>
+</body>
+</html>
