@@ -151,6 +151,7 @@ pip install flask
 pip install flask-sqlalchemy
 pip install flask-wtf
 pip install MySQL-python
+pip install Flask-Migrate
 
 # run the database migrations
 python passenger_wsgi.py db init
