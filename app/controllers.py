@@ -2,18 +2,18 @@ from flask import Flask, render_template, request, redirect, session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from passenger_wsgi import db, application, Session
+from passenger_wsgi import application
 from app.models import Task
-
-
+from config import Session
 
 @application.route('/', methods=['GET', 'POST'])
 def index():
     session = Session()
     if request.method == 'POST':
         task = Task(name=request.form['name'])
-        session.add(task)
-        session.commit()
+        if task.name != "":
+            session.add(task)
+            session.commit()
         tasks = session.query(Task).all()
         return redirect('/')
     else:
