@@ -154,9 +154,7 @@ pip install MySQL-python
 pip install Flask-Migrate
 
 # run the database migrations
-python passenger_wsgi.py db init
-python passenger_wsgi.py db migrate
-python passenger_wsgi.py db upgrade
+python migrate.py db upgrade
 
 # when you are done with your virtualenv you can run
 deactivate
