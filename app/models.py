@@ -1,4 +1,4 @@
-from passenger_wsgi import db
+from migrate import db
 
 class Task(db.Model):
     __table_args__ = {'extend_existing': True}
