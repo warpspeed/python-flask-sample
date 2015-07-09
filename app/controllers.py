@@ -11,7 +11,6 @@ def index():
         if task.name != "":
             session.add(task)
             session.commit()
-        tasks = session.query(Task).all()
         return redirect('/')
     else:
         tasks = session.query(Task).all()
@@ -34,5 +33,4 @@ def toggle_complete(task_id):
         task = session.query(Task).filter_by(id=task_id).all()[0]
         task.is_complete = not task.is_complete
         session.commit()
-        return redirect('/')
     return redirect('/')
