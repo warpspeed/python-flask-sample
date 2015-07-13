@@ -147,11 +147,9 @@ cd ~/sites/warpspeed-flask.dev
 source env/bin/activate
 
 # install flask and other dependencies
-pip install flask
-pip install flask-sqlalchemy
+pip install flask-migrate
 pip install flask-wtf
 pip install MySQL-python
-pip install Flask-Migrate
 
 # run the database migrations
 python migrate.py db upgrade
