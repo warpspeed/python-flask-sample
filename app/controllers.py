@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from migrate import application
+from manage import application
 from app.models import Task
 from config import Session
 
