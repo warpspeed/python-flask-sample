@@ -147,12 +147,10 @@ cd ~/sites/warpspeed-flask.dev
 source env/bin/activate
 
 # install flask and other dependencies
-pip install flask-migrate
-pip install flask-wtf
-pip install MySQL-python
+pip install -r requirements.txt
 
 # run the database migrations
-python migrate.py db upgrade
+python manage.py db upgrade
 
 # when you are done with your virtualenv you can run
 deactivate
