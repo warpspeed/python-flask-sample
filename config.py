@@ -13,6 +13,8 @@ DB_PASS = os.environ['DB_PASS']
 CSRF_ENABLED = True
 CSRF_SESSION_KEY = SECRET_KEY
 
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 engine = create_engine('mysql://' + DB_USER + ':' + DB_PASS + '@localhost/' + DB_NAME)
 SQLALCHEMY_DATABASE_URI = 'mysql://' + DB_USER + ':' + DB_PASS + '@localhost/' + DB_NAME
 
