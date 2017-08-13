@@ -80,8 +80,11 @@ To create a virtual environment, perform the following:
 # make sure you are in the proper site directory
 cd ~/sites/warpspeed-flask.dev
 
-# create the virtual environment
+# create the virtual environment (on mac/linux)
 virtualenv env
+
+# create the virtual environment (on windows)
+virtualenv env --always-copy
 ```
 
 You should now have a folder "env" within your "warpspeed-flask.dev" directory.
@@ -171,6 +174,12 @@ To access your new Flask site, you will need to add an entry to the hosts file o
 
 # open a terminal and run the following command (for Mac)
 sudo nano /etc/hosts
+
+# using git bash or similar, must be run as admin (windows)
+notepad /c/Windows/System32/Drivers/etc/hosts
+
+# using command prompt, must be run as admin (windows)
+notepad C:\Windows\System32\Drivers\etc\hosts
 
 # add a line that looks like this to the end of the file
 192.168.88.10  warpspeed-flask.dev
